@@ -1,0 +1,53 @@
+<div style="text-align: left;">
+How much do you identify with your organisation?<br>&nbsp;
+</div>
+
+
+<div id="slide-wrapper" style="height: 200px; position: relative;">
+
+	<div id="slide-self" style="
+	max-width: 200px;
+	max-height: 200px;
+	width: 200px;
+	height: 200px;
+	-webkit-border-radius: 100%;
+	-moz-border-radius: 100%;
+	border-radius: 100%;
+	border: solid 1px black;
+	background: rgba(255, 0, 0, 0.2);
+	position: absolute;
+	left: 0px;
+	text-align: left;
+	color: black;
+	font-size: 0.8em;
+	z-index: 100;
+	">
+
+		<span style="position: absolute; top: 20%; left: 25%">
+		Me
+		</span>
+	</div>
+
+
+	<div id="slide-other" style="
+	max-width: 200px;
+	max-height: 200px;
+	width: 200px;
+	height: 200px;
+	border-radius: 100%;
+	border: 1px solid black;
+	background: rgba(10, 120, 255, 0.5);
+	position: absolute;
+	left: 200px;
+	text-align: right;
+	color: black;
+	font-size: 0.8em;
+	z-index: 50;
+	">
+
+		<span style="position: absolute; top: 70%; right:20%;">
+		Organisation
+		</span>
+	</div>
+
+</div>

@@ -1,0 +1,120 @@
+Qualtrics.SurveyEngine.addOnload(function()
+{
+
+});
+
+Qualtrics.SurveyEngine.addOnReady(function()
+{
+	/***************************
+	Written by Jia-Xin (Jay) Tay (last updated: 15 Apr 2020)
+	For Djurre Holtrop at the Future of Work Institute, Curtin University, Australia.
+	
+	If you have any questions, head over to my GitHub repo for more info or to get in touch:
+	https://github.com/jxtay/custom-qualtrics-questions
+	
+	---------------------------------
+	
+	This question is based on the Inclusion of Other in the Self (IOS) Scale (Aron, Aron, & Smollan, 1992).
+	
+	Note that the value measured is proportional to the distance travelled by the "Self" circle.
+	It is NOT proportional to the area of overlap, so if you want the area, you will have to do some calculations later on.
+	
+	Reference:
+	Aron, A., Aron, E. N., & Smollan, D. (1992). Inclusion of other in the self scale and the structure of interpersonal closeness. Journal of personality and social psychology, 63(4), 596.
+	****************************/
+	
+	
+	/***************************/
+	/***** CONFIGURATIONS  *****/
+	/***************************/
+	/* these are the settings you can change */
+	var initialGap = false;  // gap between circles when slider is at zero? true for 10% gap, false for them to touch
+	var maxValue = 100;  // adjust according to max slider value you set in the Qualtrics question
+	var maxDiameter = 200;  // maximum diameter of the circles (in px)
+	
+	
+	/***********************/
+	/***** ENGINE ROOM *****/
+	/***********************/
+	/* make changes only if you know what you are doing */
+	
+	// get questionId
+	var qid = this.questionId;
+	
+	// get initialValue
+	var initialValue = parseInt( "${e://Field/initialSliderValue}" ) | 0;
+	
+	// declare some global variables
+	var diameter, widthUnit;
+	
+	function drawCircles(value) {
+		
+		// calculate diameter of circles
+		diameter = Math.min( jQuery("#slide-wrapper").width() / 2, maxDiameter );
+		
+		// set diameters
+		jQuery("#" + qid + " #slide-self").width(diameter).height(diameter);
+		jQuery("#" + qid + " #slide-other").width(diameter).height(diameter);
+		
+		// calculate widthUnit
+		if(initialGap)  { widthUnit = jQuery("#slide-self").width() / 90; }  // widthUnit for the circles to have a 10% gap when value == 0
+		else { widthUnit = jQuery("#slide-self").width() / 100; }  // widthUnit for circles to touch when value == 0
+		
+		// position "Self" circle
+		var value = value | jQuery("[id='" + qid + "~1~true-result']").val();
+		if(!value) { /* do nothing */ }
+		else { jQuery("#" + qid + " #slide-self").css("left", (value * widthUnit) + "px"); }
+		
+		// position "Other" circle
+		jQuery("#" + qid + " #slide-other").css("left", (widthUnit * 100) + "px");
+		
+		
+		// centralise position of container
+		var sideMargin = Math.max((jQuery("#" + qid + " #slide-wrapper").width() - (widthUnit * 200 )) / 2, 0);
+		jQuery("#" + qid + " #slide-wrapper").css({ "margin-left": sideMargin - 1 + "px", "margin-right": sideMargin - 1 + "px"});
+		
+		// reduce gap between slider and labels
+		jQuery("#" + qid + " .statement").css("padding-bottom","0px");
+	}
+	
+	// initialise: set value of slider and run drawCircles once
+	// this.setChoiceValue(initialValue)
+	drawCircles(initialValue);  // finish by moving circle
+	
+	// trigger drawCircles every time window resizes
+	jQuery( window ).resize( drawCircles );
+	
+	
+	// trigger change with MutationObserver (adapted from https://stackoverflow.com/a/31719339/7572636 )
+	// need MutationObserver because change listener does not work on hidden inputs
+	MutationObserver = window.MutationObserver || window.WebKitMutationObserver;
+
+	var trackChange = function(element) {
+	  var observer = new MutationObserver(function(mutations, observer) {
+		if(mutations[0].attributeName == "value") {
+			jQuery(element).trigger("change");
+		}
+	  });
+	  observer.observe(element, {
+		attributes: true
+	  });
+	}
+	
+	// Pass an element to the MutationListener function to start tracking
+	trackChange( jQuery("[id='" + qid + "~1~true-result']")[0] );
+	
+	// add listener to slider bar and move circle
+	jQuery("[id='" + qid + "~1~true-result']").change(function() {
+		// get slider value
+		var value = jQuery("[id='" + qid + "~1~true-result']").val();
+		
+		if(!value) { /* do nothing */ }
+		else { jQuery("#slide-self").css("left", (value * widthUnit) + "px"); }
+	});
+	
+});
+
+Qualtrics.SurveyEngine.addOnUnload(function()
+{
+
+});
