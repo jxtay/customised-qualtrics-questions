@@ -15,7 +15,7 @@ BASIC PROCEDURE
 1. Create a Slider type question in Qualtrics.
 
 2. Add the question content:
-	a. Click on the question to edit it.
+	a. Click on the question text to edit it.
 	b. Using the HTML View, copy and paste the contents of "question-html.txt".
 	c. Once done, click outside the editing area. You should now see two labelled circles appearing as the content of the question.
 
@@ -26,7 +26,7 @@ BASIC PROCEDURE
 	d. Set the min and max value of the slider. I recommend min = 0, max = 100, decimals = 0.
 
 4. Add JavaScript to the question:
-	a. Right-click on the question, and select "Add JavaScript...".
+	a. Right-click on the question (or click on the gear icon to the left of the question), and select "Add JavaScript...".
 	b. Copy and paste the contents of "question-javascript.txt".
 	c. Make changes to the "CONFIGURATION" section of the JavaScript as required. See the comments in the code for details.
 	
@@ -38,5 +38,6 @@ p.s. An additional feature:
 5. If you want to set the initial state of the slider according to a value from a previous question/survey:
 	a. Use an embedded data named "initialSliderValue".
 	b. Check "Custom Start Position" and "Show Value" in the question's options.
-	c. Right-click on the question, and select "Add Default Choices..."
+	c. Right-click on the question (or click on the gear icon to the left of the question), and select "Add Default Choices..."
 	d. In the pop-up titled "Edit Default Choices", click on the textbox to the right of the slider and fill it with "${e://Field/initialSliderValue}" (without the quotation marks). Remember to click "Save".
+	e. After completing step d, you may uncheck the "Show Value" option if you want.

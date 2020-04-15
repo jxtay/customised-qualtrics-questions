@@ -24,18 +24,18 @@ Qualtrics.SurveyEngine.addOnReady(function()
 	****************************/
 	
 	
-	/***************************/
+	/**********************************/
 	/***** CONFIGURATIONS  *****/
-	/***************************/
+	/**********************************/
 	/* these are the settings you can change */
 	var initialGap = false;  // gap between circles when slider is at zero? true for 10% gap, false for them to touch
 	var maxValue = 100;  // adjust according to max slider value you set in the Qualtrics question
 	var maxDiameter = 200;  // maximum diameter of the circles (in px)
 	
 	
-	/***********************/
+	/*****************************/
 	/***** ENGINE ROOM *****/
-	/***********************/
+	/*****************************/
 	/* make changes only if you know what you are doing */
 	
 	// get questionId
