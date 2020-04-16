@@ -1,0 +1,69 @@
+<html>
+<head>
+<title>Instructions for Sliding Circles</title>
+<style>
+	body {
+	  font-family: san-serif;
+	  font-size: 14pt;
+	}
+	img {
+	  max-height: 300px;
+	}
+	hr {
+	  width: 50%;
+	  color: grey;
+	  margin-left: 0;
+	}
+	li {
+	  padding-bottom: 0.5em;
+	}
+	code {
+	  background-color: lightgrey;
+	  font-size: 0.95em;
+	}
+</style>
+</head>
+
+<body>
+<h2>"SLIDING CIRCLES"</h2>
+<p>
+<hr>
+This question is based on the Inclusion of Other in the Self (IOS) Scale (Aron, Aron, & Smollan, 1992).
+
+<p>Note that the value measured is proportional to the distance travelled by the "Self" circle.
+<br>It is NOT proportional to the area of overlap, so if you want the area, you will have to do some calculations later on.
+
+<p>Reference:
+<br>Aron, A., Aron, E. N., &amp; Smollan, D. (1992). Inclusion of other in the self scale and the structure of interpersonal closeness. Journal of personality and social psychology, 63(4), 596.
+
+<p><hr>
+
+<h4>BASIC PROCEDURE</h4>
+<ol>
+<li>Create a Slider type question in Qualtrics.</li>
+<li>Add the question content:
+	<br>a. Click on the question text to edit it.
+	<br>b. Using the HTML View, copy and paste the contents of "question-html.txt".
+	<br>c. Once done, click outside the editing area. You should now see two labelled circles appearing as the content of the question.</li>
+<li>Adjust the options of the question:
+	<br>a. Set Choices = 1, so that there is only one slider.
+	<br>b. Set Labels as necessary. I set it to 2 to label the anchors on either end of the slider ("not at all" and "completely").
+	<br>c. Set Type = Sliders.
+	<br>d. Set the min and max value of the slider. I recommend min = 0, max = 100, decimals = 0.</li>
+<li>Add JavaScript to the question:
+	<br>a. Right-click on the question (or click on the gear icon to the left of the question), and select "Add JavaScript...".
+	<br>b. Copy and paste the contents of "question-javascript.txt".
+	<br>c. Make changes to the "CONFIGURATION" section of the JavaScript as required. See the comments in the code for details.</li>
+
+<p>Hope this works for you!
+
+<p>p.s. An additional feature:
+<li>If you want to set the initial state of the slider according to a value from a previous question/survey:
+	<br>a. Use an embedded data named "initialSliderValue".
+	<br>b. Check "Custom Start Position" and "Show Value" in the question's options.
+	<br>c. Right-click on the question (or click on the gear icon to the left of the question), and select "Add Default Choices..."
+	<br>d. In the pop-up titled "Edit Default Choices", click on the textbox to the right of the slider and fill it with <code>${e://Field/initialSliderValue}</code>. Remember to click "Save".
+	<br>e. After completing step d, you may uncheck the "Show Value" option if you want.</li>
+</ol>
+
+</html>
